@@ -11,19 +11,20 @@ function App() {
   
   const [getNum,setNum] = React.useState();
   const [getScore,setScore] = React.useState(0);
-  const [randomNums,setRandomNums] = React.useState([]);
+  const [randomNums, setRandomNums] = React.useState([]);
 
   React.useEffect(() =>{
-    const randomNum = () =>{
-      return Math.ceil(Math.random()*25);
-    }
-  
+
+    let nums = [];
+
     for(let i=0; i<4; i++){
-      setRandomNums([...randomNums,randomNum])
+      nums.push(Math.ceil(Math.random()*25));
     }
 
+    setRandomNums(nums);
+
     setNum(Math.ceil(Math.random() * 100) + 100);
-  },[randomNums,getNum])
+  },[])
 
   let displayScore = getScore
 
