@@ -11,14 +11,19 @@ function App() {
   
   const [getNum,setNum] = React.useState();
   const [getScore,setScore] = React.useState(0);
-
-  const randomScore = () =>{
-    setNum(Math.ceil(Math.random() * 100) + 100);
-  }
+  const [randomNums,setRandomNums] = React.useState([]);
 
   React.useEffect(() =>{
-    randomScore();
-  },[])
+    const randomNum = () =>{
+      return Math.ceil(Math.random()*25);
+    }
+  
+    for(let i=0; i<4; i++){
+      setRandomNums([...randomNums,randomNum])
+    }
+
+    setNum(Math.ceil(Math.random() * 100) + 100);
+  },[randomNums,getNum])
 
   let displayScore = getScore
 
@@ -29,17 +34,7 @@ function App() {
     console.log(value);
   }
 
-  let crystals = ['red','blue','green','yellow']
-
-  const randomNum = () =>{
-    return Math.ceil(Math.random()*25);
-  }
-
-  let randomNums = [];
-
-  for(let i=0; i<crystals.length; i++){
-    randomNums.push(randomNum());
-  }
+  let crystals = ['red','blue','green','yellow'];
 
   return (
   <div className='container'>
