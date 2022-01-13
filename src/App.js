@@ -10,19 +10,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   
   const [getNum,setNum] = React.useState();
-  const [getScore,setScore] = React.useState();
+  const [getScore,setScore] = React.useState(0);
 
   const randomScore = () =>{
-    setNum(Math.ceil(Math.random() * 100));
+    setNum(Math.ceil(Math.random() * 100) + 100);
   }
 
   React.useEffect(() =>{
     randomScore();
   },[])
 
+  let displayScore = getScore
+
   const handleClick = (e) =>{
     let value = parseInt(e.target.getAttribute('value'));
     setScore(getScore + value);
+    displayScore =  getScore;
     console.log(value);
   }
 
@@ -31,7 +34,7 @@ function App() {
     <Header/>
     <Detail/>
     <DisplayRandom score={getNum}/>
-    <Score score={getScore}/>
+    <Score score={displayScore}/>
     <CrystalBox onClick={handleClick}/>
   </div>
   );
