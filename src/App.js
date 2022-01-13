@@ -29,13 +29,27 @@ function App() {
     console.log(value);
   }
 
+  let crystals = ['red','blue','green','yellow']
+
+  const randomNum = () =>{
+    return Math.ceil(Math.random()*25);
+  }
+
+  let randomNums = [];
+
+  for(let i=0; i<crystals.length; i++){
+    randomNums.push(randomNum());
+  }
+
   return (
   <div className='container'>
     <Header/>
     <Detail/>
     <DisplayRandom score={getNum}/>
     <Score score={displayScore}/>
-    <CrystalBox onClick={handleClick}/>
+    {crystals.map((crystal,index) =>(
+        <CrystalBox index={index} onClick={handleClick} value={randomNums[index]} crystal={crystal}/>
+    ))}
   </div>
   );
 }
