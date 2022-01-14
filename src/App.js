@@ -42,9 +42,9 @@ function App() {
     <Header/>
     <Detail/>
     <DisplayRandom score={getNum}/>
-    <Score score={displayScore} win={getNum===getScore}/>
+    <Score score={displayScore} win={getNum===getScore} lose={getNum>getScore}/>
     {crystals.map((crystal,index) =>(
-        <CrystalBox index={index} onClick={handleClick} value={randomNums[index]} crystal={crystal}/>
+        <CrystalBox key={index} index={index} onClick={handleClick} value={randomNums[index]} crystal={crystal}/>
     ))}
   </div>
   );
